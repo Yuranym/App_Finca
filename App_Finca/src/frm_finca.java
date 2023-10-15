@@ -26,7 +26,7 @@ LinkedList<cls_fincas> obj_Fincas = new LinkedList<cls_fincas>();
         txt_direccion.setText("");
         txt_nombre.setText("");
         txt_propietario.setText("");
-         txt_codigo.requestFocus();
+        txt_codigo.requestFocus();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -251,10 +251,10 @@ LinkedList<cls_fincas> obj_Fincas = new LinkedList<cls_fincas>();
     }// </editor-fold>//GEN-END:initComponents
 private void fnt_guardar(String n, String c, String d, String co, String p){
         if(n.equals("")|| c.equals("")|| d.equals("")|| co.equals("") || p.equals("")){
-            JOptionPane.showMessageDialog(null,"Debe ingresar" + "todos los datos", "Registrar", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Debe ingresar " + "todos los datos", "Registrar", JOptionPane.ERROR_MESSAGE);
         }else{
             obj_Fincas.add(new cls_fincas(n,c,d,co,p));
-            JOptionPane.showMessageDialog(null, "Finca registrada" + "Con exito", "Registrar", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Finca registrada " + "con exito", "Registrar", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
@@ -264,9 +264,27 @@ private void fnt_guardar(String n, String c, String d, String co, String p){
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         fnt_limpiar();
     }//GEN-LAST:event_btn_cancelarActionPerformed
-
+private void fnt_consultar(String codigo){
+        int_posicion = 0;
+        bln_sw = false;
+        for(int i = 0; i < obj_Fincas.size(); i++){
+            if(codigo.equals(obj_Fincas.get(i).getCodigo())){
+                int_posicion = i;
+                bln_sw = true;
+                break;
+            }
+        }
+        if(bln_sw == false){
+        JOptionPane.showMessageDialog(null,"No se encontraron " +  "registros" , "consultar" , JOptionPane.ERROR_MESSAGE);
+        }else{
+            txt_nombre.setText(obj_Fincas.get(int_posicion).getNombre());
+            txt_contacto.setText(obj_Fincas.get(int_posicion).getContacto());
+            txt_direccion.setText(obj_Fincas.get(int_posicion).getDireccion());
+            txt_propietario.setText(obj_Fincas.get(int_posicion).getPropietario());
+        }
+    }
     private void btn_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultarActionPerformed
-        // TODO add your handling code here:
+         fnt_consultar(txt_codigo.getText());
     }//GEN-LAST:event_btn_consultarActionPerformed
 
     /**
